@@ -1,0 +1,33 @@
+body{
+	font-size: 20px;
+	font-family: 'Source Sans Pro', sans-serif;;
+	color: rgb(214, 83, 83);
+	background-image: url(../images/punk.jpg),
+}
+.question{
+	font-weight: 600;
+	width:100%;
+	text-align: center;
+	margin-top: 40px;
+	padding: 10px;
+}
+.answers {
+	margin-bottom: 40px;
+	width:100%;
+	text-align: center;
+	padding: 10px;
+}
+#submit{
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: rgb(214, 83, 83);
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+#submit:hover{
+	background-color: #3a8;
+}
