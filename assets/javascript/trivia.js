@@ -1,11 +1,14 @@
+
 // Array for questions
-var triviaQuest = [{
+var triviaQuest = [
+
+		{
 		question: "What do the Misfits want?",
 		answers: {
 			a: "Your heart",
 			b: "To bring back the dead",
 			c: "Your skull",
-			d: "For you to shut up",
+			d: "Teenagers from Mars",
 		},
 		rightAnswer: 'c'
 	},
@@ -110,51 +113,97 @@ var triviaQuest = [{
 	},
 ];
 
-function print(message) {
-  var outputDiv = document.getElementById('output'); // node
-  outputDiv.innerHTML = message; // similar to document.write
-  $( '#output' ).removeClass( "hidden" );
-  // $( '#output' ).toggleClass( "hidden", addOrRemove );
+
+
+var triviaContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var submit = document.getElementById('submit');
+var start = document.getElementById('start');
+var logo = document.getElementById('logo');
+
+generateQuiz(triviaQuest, triviaContainer, resultsContainer, submit, start);
+
+function generateQuiz(questions, triviaContainer, resultsContainer, submit, start){
+
+	function showQuestions(questions, triviaContainer){
+		// we'll need a place to store the output and the answer choices
+		var output = [];
+		var answers;
+
+		// for each question...
+		for(var i = 0; i < questions.length; i++){
+			
+			// first reset the list of answers
+			answers = [];
+
+			// for each available answer...
+			for(letter in questions[i].answers){
+
+				// ...add an html radio button
+				answers.push(
+					'<label>'
+						+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
+						+ letter + ': '
+						+ questions[i].answers[letter]
+					+ '</label>'
+				);
+			}
+
+			// add this question and its answers to the output
+			output.push(
+				'<div class="question">' + questions[i].question + '</div>'
+				+ '<div class="answers">' + answers.join('') + '</div>'
+			);
+		}
+
+		// finally combine our output list into one string of html and put it on the page
+		triviaContainer.innerHTML = output.join('');
+	}
+
+
+	function showResults(questions, triviaContainer, resultsContainer){
+		
+		// gather answer containers from our quiz
+		var answerContainers = triviaContainer.querySelectorAll('.answers');
+		
+		// keep track of user's answers
+		var userAnswer = '';
+		var numCorrect = 0;
+		
+		// for each question...
+		for(var i=0; i<questions.length; i++){
+
+			// find selected answer
+			userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+			
+			// if answer is correct
+			if(userAnswer===questions[i].rightAnswer){
+				// add to the number of correct answers
+				numCorrect++;
+				
+				// color the answers green
+				answerContainers[i].style.color = 'lightgreen';
+			}
+			// if answer is wrong or blank
+			else{
+				// color the answers red
+				answerContainers[i].style.color = 'red';
+			}
+		}
+
+		// show number of correct answers out of total
+		resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+	}
+
+	// show questions right away
+	start.onclick = function(){
+	showQuestions(questions, triviaContainer, resultsContainer);
+	
+	
+	// on submit, show results
+	submit.onclick = function(){
+		showResults(questions, triviaContainer, resultsContainer);
+	}
 }
 
-// function to build ordered lists of questions
-function buildList( list ) {
-  var listHTML = '<ol>';
-  for (var i = 0; i < list.length; i +=1) {
-    listHTML += '<li>' + list[i] + '</li>';
-  }
-  listHTML += '</ol>';
-  return listHTML;
 }
-
-$(document).on("click", ".launch-quiz", function(e) {
-
-  // Loop 
-  for ( var i = 0; i < quizQuestions.length; i += 1) { // loop thru each question
-    response = prompt(quizQuestions[i][0]); // prompt asks question
-    response = response.toLowerCase();
-    if (response === quizQuestions[i][1]){ // compare response to answer in array
-      numberOfCorrectAnswers += 1;
-      correctAnswers.push(quizQuestions[i][0]);
-    } else {
-      numberOfIncorrectAnswers +=1;
-      incorrectAnswers.push(quizQuestions[i][0]);
-    }
-  }
-    
- 
-  
-  
-  html = "You got " + numberOfCorrectAnswers + " question(s) right." + "<br>";
-  html += "You got " + numberOfIncorrectAnswers + " question(s) wrong." + "<br>";
-  html += '<h2>You got these questions right:</h2>';
-  html += buildList(correctAnswers);
-  html += '<h2>You got these questions wrong:</h2>';
-  html += buildList(incorrectAnswers);
-  print(html);
-
-});
-
-// $(document).on("click", ".play-again", function(e) {
-//   $( '#output' ).addClass( "hidden" );
-// })
