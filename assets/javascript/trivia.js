@@ -219,9 +219,4 @@ function generateQuiz(questions, triviaContainer, resultsContainer, submit, star
 		showResults(questions, triviaContainer, resultsContainer);
 	}
 
-
-	//resets page
-	start.reset()
-
-
 }
