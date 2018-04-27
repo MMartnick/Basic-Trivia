@@ -1,4 +1,4 @@
-body{
+body {
 	font-size: 16px;
 	font-family: 'Source Sans Pro', sans-serif;
 	word-spacing: 4px;
@@ -8,23 +8,30 @@ body{
 	background-repeat: no-repeat;
 }
 
-.question{
+#container {
+	width: 960px;
+	margin: auto;
+	margin-top: -200px;
+}
+
+.question {
 	font-size: 1.2em;
 	color: rgb(241, 104, 80);
-	width:90%;
+	width: 90%;
 	text-align: center;
 	margin-top: 80px;
 	padding: 10px;
 	margin: auto;
 	background-color: rgba(0, 0, 0, 0.733);
 	border-left: 4px solid aquamarine;
-	border-right: 4px solid aquamarine;;
-
+	border-right: 4px solid aquamarine;
+	;
 }
+
 .answers {
 	margin-top: 40px;
 	margin-bottom: 40px;
-	width:90%;
+	width: 90%;
 	text-align: center;
 	padding: 10px;
 	margin: auto;
@@ -36,7 +43,7 @@ body{
 #results {
 	font-size: 1.4em;
 	color: rgb(252, 82, 52);
-	width:30%;
+	width: 30%;
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 50px;
@@ -44,19 +51,75 @@ body{
 	margin: auto;
 }
 
-#submit{
+#submit {
+	margin-left: 30px;
+	margin-top: 140px;
 	font-family: sans-serif;
 	font-size: 20px;
 	background-color: rgb(214, 83, 83);
+	width: 90px;
 	color: #fff;
 	border: 0px;
 	border-radius: 3px;
-	padding: 20px;
+	padding: 10px;
 	cursor: pointer;
-	margin-bottom: 20px;
 }
-#submit:hover{
-	background-color: #3a8;
+
+#submit:hover {
+	background-color: rgb(241, 166, 80);
+}
+
+#start {
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 100px;
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: rgb(159, 240, 112);
+	width: 90px;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#start:hover {
+	background-color: rgb(241, 166, 80);
+}
+
+#reset {
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 100px;
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: rgb(159, 240, 112);
+	width: 90px;
+	color: rgb(248, 12, 111);
+	border: 0px;
+	border-radius: 3px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#timer {
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 40px;
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: rgb(159, 240, 112);
+	width: 90px;
+	color: rgb(248, 12, 111);
+	border: 0px;
+	border-radius: 3px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#reset:hover {
+	background-color: rgb(241, 166, 80);
 }
 
 #quiz {
@@ -65,5 +128,5 @@ body{
 	text-align: center;
 	margin: auto;
 	border-radius: 40px;
-	width: 70%;
+	width: 100%;
 }
