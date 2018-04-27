@@ -102,7 +102,7 @@ var logo = document.getElementById('logo');
 var hide = submit.style.display === "none";
 var clock;
 var timeLeft = 30;
-var countdownClock = $("#timer");
+
 
 generateQuiz(triviaQuest, triviaContainer, resultsContainer, submit, start, reset);
 
