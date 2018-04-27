@@ -68,27 +68,6 @@ var triviaQuest = [
 		rightAnswer: 'd'
 	},
 
-	{
-		question: "Who is not a punk vocalist?",
-		answers: {
-			a: "Snake Plisken",
-			b: "Glenn Danzig",
-			c: "Jello Biafra",
-			d: "Sid Vicious",
-		},
-		rightAnswer: 'a'
-	},
-
-	{
-		question: "Who wrote the the album Zen Arcade?",
-		answers: {
-			a: "Hüsker Dü",
-			b: "Social Distortion",
-			c: "The Sex Pistols",
-			d: "The Offspring",
-		},
-		rightAnswer: 'a'
-	},
 
 	{
 		question: "According to NOFX who is taking over?",
@@ -120,6 +99,10 @@ var resultsContainer = document.getElementById('results');
 var submit = document.getElementById('submit');
 var start = document.getElementById('start');
 var logo = document.getElementById('logo');
+var hide = submit.style.display==="none";
+var clock;
+var timeLeft = 30;
+var countdownClock = $("#timer");
 
 generateQuiz(triviaQuest, triviaContainer, resultsContainer, submit, start);
 
@@ -133,13 +116,11 @@ function generateQuiz(questions, triviaContainer, resultsContainer, submit, star
 		// for each question...
 		for(var i = 0; i < questions.length; i++){
 			
-			// first reset the list of answers
+			// reset answer
 			answers = [];
 
-			// for each available answer...
+			// add buttons to for each answer
 			for(letter in questions[i].answers){
-
-				// ...add an html radio button
 				answers.push(
 					'<label>'
 						+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
@@ -156,8 +137,9 @@ function generateQuiz(questions, triviaContainer, resultsContainer, submit, star
 			);
 		}
 
-		// finally combine our output list into one string of html and put it on the page
+		// Use output to show questions
 		triviaContainer.innerHTML = output.join('');
+		
 	}
 
 
@@ -181,12 +163,12 @@ function generateQuiz(questions, triviaContainer, resultsContainer, submit, star
 				// add to the number of correct answers
 				numCorrect++;
 				
-				// color the answers green
+				// change to green
 				answerContainers[i].style.color = 'lightgreen';
 			}
 			// if answer is wrong or blank
 			else{
-				// color the answers red
+				// change to red
 				answerContainers[i].style.color = 'red';
 			}
 		}
@@ -195,15 +177,22 @@ function generateQuiz(questions, triviaContainer, resultsContainer, submit, star
 		resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
 	}
 
-	// show questions right away
+	// show questions on start
 	start.onclick = function(){
-	showQuestions(questions, triviaContainer, resultsContainer);
+		showQuestions(questions, triviaContainer, submit);
+		// set timelimit from start
+		setTimeout(thirtySeconds, 1000 * 50);
+		function thirtySeconds() {
+			$("#quiz").hide();
+			document.getElementById("#quiz").style.display = "none";
+		}
+	}
 	
-	
-	// on submit, show results
+	// show results on click
 	submit.onclick = function(){
 		showResults(questions, triviaContainer, resultsContainer);
 	}
-}
 
-}
+
+	
+}	

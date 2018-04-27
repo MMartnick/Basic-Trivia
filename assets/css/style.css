@@ -32,6 +32,18 @@ body{
 	border-left: 4px solid aquamarine;
 	border-right: 4px solid aquamarine;
 }
+
+#results {
+	font-size: 1.4em;
+	color: rgb(252, 82, 52);
+	width:30%;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 50px;
+	padding: 10px;
+	margin: auto;
+}
+
 #submit{
 	font-family: sans-serif;
 	font-size: 20px;
